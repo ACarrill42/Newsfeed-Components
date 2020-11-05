@@ -118,32 +118,32 @@ const data = [
 function articleMaker(article) {
   const div = document.querySelector('.articles')
   const h2 = document.createElement('h2');
-  const p = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const p4 = document.createElement('p');
   const span = document.createElement('span')
-  h2.textContent = article;
-  p.textContent = article;
+  h2.textContent = article.title;
+  p1.textContent = article.date;
+  p2.textContent = article.firstParagraph;
+  p3.textContent = article.secondParagraph;
+  p4.textContent = article.thirdParagraph;
   span.textContent = '+'
   p.classList.add('date');
   span.classList.add('expandButton');
   div.append(h2);
   div.append(p);
   div.append(span);
+
+  span.addEventListener( 'click', () => {
+    div.classList.toggle('div-two')
+  })
 return div
 }
 const funct = articleMaker();
 
-const head = document.querySelector('h2');
-const body = document.querySelector('p');
-const input = document.querySelector('span');
-
-data.forEach( (el) => {
-  let h = head(el.title);
-  head.append(h);
+data.forEach(article => {
+  const toAppend = articleMaker(article);
+  document.querySelector('div.articles-open').append(toAppend);
 })
 
-
-
-// data[data.length[firstParagraph]].forEach(element => {
-//   let para = articleMaker(element);
-//   p.append(para);
-// });
