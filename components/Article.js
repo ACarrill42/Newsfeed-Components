@@ -86,6 +86,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Stuff and Things',
+    date: 'Jan 19, 2021',
+    firstParagraph: 'stuff stuff stuff stuff',
+    secondParagraph: 'and and and and',
+    thirdParagraph: 'things things things things'
   }
 ];
 
@@ -114,3 +121,41 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+function articleMaker(artObj) {
+  let article = document.createElement('div');
+  let artTitle = document.createElement('h2');
+  let artDate = document.createElement('p')
+  let p1 = document.createElement('p');
+  let p2 = document.createElement('p');
+  let p3 = document.createElement('p');
+  let span = document.createElement('span');
+
+  article.appendChild(artTitle);
+  article.append(artDate);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(span);
+
+  article.classList.add('article');
+  artDate.classList.add('date');
+  span.classList.add('expandButton');
+
+  artTitle.textContent = artObj.title;
+  artDate.textContent = artObj.date;
+  p1.textContent = artObj.firstParagraph;
+  p2.textContent = artObj.secondParagraph;
+  p3.textContent = artObj.thirdParagraph;
+  span.textContent = "+"
+
+  span.addEventListener('click', e => {
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+}
+const articles = document.querySelector('.articles');
+
+data.forEach((data)=> {
+  articles.appendChild(articleMaker(data));
+})
